@@ -17,8 +17,8 @@ using Microsoft.Extensions.Options;
 
 namespace Kryxivia.Contracts
 {
-    public class KryxiviaNftService : _KryxiviaNftServiceBase
+    public class MainnetKryxiviaNftService : _KryxiviaNftServiceBase
     {
-        public KryxiviaNftService(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.Web3, kryxContractsOptions?.Value.NftContractAddress) { }
+        public MainnetKryxiviaNftService(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.MainnetWeb3, kryxContractsOptions?.Value.MainnetNftContractAddress) { }
     }
 }

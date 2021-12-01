@@ -20,8 +20,8 @@ namespace Kryxivia.Contracts
     /// <summary>
     /// WARNING: This class must be instantiated ONLY with a Web3 object THAT IS BOUND to an account
     /// </summary>
-    public class KryxiviaNftServiceWithSigner : _KryxiviaNftServiceBase
+    public class TestnetKryxiviaNftServiceWithSigner : _KryxiviaNftServiceBase
     {
-        public KryxiviaNftServiceWithSigner(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.Web3WithSigner, kryxContractsOptions?.Value.NftContractAddress) { }
+        public TestnetKryxiviaNftServiceWithSigner(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.TestnetWeb3WithSigner, kryxContractsOptions?.Value.TestnetNftContractAddress) { }
     }
 }

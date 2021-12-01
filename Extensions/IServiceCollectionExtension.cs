@@ -14,8 +14,22 @@ namespace Kryxivia.Domain.Extensions
         public static IServiceCollection AddKryxContracts(this IServiceCollection services, Action<KryxContractsOptions> configureOptions)
         {
             services.Configure(configureOptions);
-            services.AddScoped<KryxiviaNftService>();
-            services.AddScoped<KryxiviaNftServiceWithSigner>();
+
+            var kryxContractsOptions = new KryxContractsOptions();
+            configureOptions(kryxContractsOptions);
+
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetNftContractAddress))
+            {
+                services.AddScoped<MainnetKryxiviaNftService>();
+                services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
+            }
+
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetNftContractAddress))
+            {
+                services.AddScoped<TestnetKryxiviaNftService>();
+                services.AddScoped<TestnetKryxiviaNftServiceWithSigner>();
+            }
+
             return services;
         }
     }
