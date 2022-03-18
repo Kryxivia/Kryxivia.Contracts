@@ -21,7 +21,7 @@ namespace Kryxivia.Domain.Extensions
             if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetNftContractAddress))
             {
                 services.AddScoped<MainnetKryxiviaNftService>();
-                services.AddScoped<KryxiviaNftServiceWithSigner>();
+                services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
             }
 
             if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetNftContractAddress))
