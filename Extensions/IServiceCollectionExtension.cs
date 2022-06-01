@@ -21,13 +21,15 @@ namespace Kryxivia.Domain.Extensions
             if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetNftContractAddress))
             {
                 services.AddScoped<MainnetKryxiviaNftService>();
-                services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
+
+                if (kryxContractsOptions.TestnetWeb3WithSigner != null) services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
             }
 
             if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetNftContractAddress))
             {
                 services.AddScoped<TestnetKryxiviaNftService>();
-                services.AddScoped<TestnetKryxiviaNftServiceWithSigner>();
+
+                if (kryxContractsOptions.MainnetWeb3WithSigner != null) services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
             }
 
             return services;
