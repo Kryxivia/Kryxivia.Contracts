@@ -17,11 +17,8 @@ using Microsoft.Extensions.Options;
 
 namespace Kryxivia.Contracts
 {
-    /// <summary>
-    /// WARNING: This class must be instantiated ONLY with a Web3 object THAT IS BOUND to an account
-    /// </summary>
-    public class TestnetKryxiviaShardCoinServiceWithSigner : _KryxiviaShardCoinServiceBase
+    public class MainnetKryxiviaCoinService : _KryxiviaCoinServiceBase
     {
-        public TestnetKryxiviaShardCoinServiceWithSigner(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.TestnetWeb3WithSigner, kryxContractsOptions?.Value.TestnetShardCoinContractAddress) { }
+        public MainnetKryxiviaCoinService(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.MainnetWeb3, kryxContractsOptions?.Value.MainnetKryxiviaCoinContractAddress) { }
     }
 }

@@ -17,8 +17,8 @@ using Microsoft.Extensions.Options;
 
 namespace Kryxivia.Contracts
 {
-    public class MainnetKryxiviaShardCoinService : _KryxiviaShardCoinServiceBase
+    public class MainnetKryxitShardService : _KryxitShardServiceBase
     {
-        public MainnetKryxiviaShardCoinService(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.MainnetWeb3, kryxContractsOptions?.Value.MainnetShardCoinContractAddress) { }
+        public MainnetKryxitShardService(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.MainnetWeb3, kryxContractsOptions?.Value.MainnetKryxitShardContractAddress) { }
     }
 }

@@ -26,10 +26,16 @@ namespace Kryxivia.Domain.Extensions
                 if (kryxContractsOptions.MainnetWeb3WithSigner != null) services.AddScoped<MainnetKryxiviaNftServiceWithSigner>();
             }
 
-            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetShardCoinContractAddress))
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetKryxitShardContractAddress))
             {
-                services.AddScoped<MainnetKryxiviaShardCoinService>();
-                if (kryxContractsOptions.MainnetWeb3WithSigner != null) services.AddScoped<MainnetKryxiviaShardCoinServiceWithSigner>();
+                services.AddScoped<MainnetKryxitShardService>();
+                if (kryxContractsOptions.MainnetWeb3WithSigner != null) services.AddScoped<MainnetKryxitShardServiceWithSigner>();
+            }
+
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.MainnetKryxiviaCoinContractAddress))
+            {
+                services.AddScoped<MainnetKryxiviaCoinService>();
+                if (kryxContractsOptions.MainnetWeb3WithSigner != null) services.AddScoped<MainnetKryxiviaCoinServiceWithSigner>();
             }
 
             // Testnet
@@ -40,10 +46,16 @@ namespace Kryxivia.Domain.Extensions
                 if (kryxContractsOptions.TestnetWeb3WithSigner != null) services.AddScoped<TestnetKryxiviaNftServiceWithSigner>();
             }
 
-            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetShardCoinContractAddress))
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetKryxitShardContractAddress))
             {
-                services.AddScoped<TestnetKryxiviaShardCoinService>();
-                if (kryxContractsOptions.TestnetWeb3WithSigner != null) services.AddScoped<TestnetKryxiviaShardCoinServiceWithSigner>();
+                services.AddScoped<TestnetKryxitShardService>();
+                if (kryxContractsOptions.TestnetWeb3WithSigner != null) services.AddScoped<TestnetKryxitShardServiceWithSigner>();
+            }
+
+            if (!string.IsNullOrWhiteSpace(kryxContractsOptions.TestnetKryxiviaCoinContractAddress))
+            {
+                services.AddScoped<TestnetKryxiviaCoinService>();
+                if (kryxContractsOptions.TestnetWeb3WithSigner != null) services.AddScoped<TestnetKryxiviaCoinServiceWithSigner>();
             }
 
             return services;

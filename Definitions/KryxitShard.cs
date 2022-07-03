@@ -1,0 +1,446 @@
+using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Numerics;
+using Nethereum.Hex.HexTypes;
+using Nethereum.ABI.FunctionEncoding.Attributes;
+using Nethereum.Web3;
+using Nethereum.RPC.Eth.DTOs;
+using Nethereum.Contracts.CQS;
+using Nethereum.Contracts;
+using System.Threading;
+
+namespace Kryxivia.Contracts.Definitions.KryxitShard
+{
+    public partial class KryxitShardDeployment : KryxitShardDeploymentBase
+    {
+        public KryxitShardDeployment() : base(BYTECODE) { }
+        public KryxitShardDeployment(string byteCode) : base(byteCode) { }
+    }
+
+    public class KryxitShardDeploymentBase : ContractDeploymentMessage
+    {
+        public static string BYTECODE = "60806040526006805460ff191690556200001c6012600a620004c7565b6200002d9064012a05f200620005bc565b6007553480156200003d57600080fd5b5060405162001b3438038062001b348339810160408190526200006091620003b8565b8151829082906200007990600490602085019062000267565b5080516200008f90600590602084019062000267565b50620000a191506000905033620000bd565b620000b533600754620000cd60201b60201c565b505062000647565b620000c98282620001ab565b5050565b6001600160a01b038216620000ff5760405162461bcd60e51b8152600401620000f6906200041f565b60405180910390fd5b6200010d6000838362000235565b80600360008282546200012191906200045f565b90915550506001600160a01b03821660009081526001602052604081208054839290620001509084906200045f565b90915550506040516001600160a01b038316906000907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef906200019590859062000456565b60405180910390a3620000c96000838362000235565b620001b782826200023a565b620000c9576000828152602081815260408083206001600160a01b03851684529091529020805460ff19166001179055620001f162000263565b6001600160a01b0316816001600160a01b0316837f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d60405160405180910390a45050565b505050565b6000918252602082815260408084206001600160a01b0393909316845291905290205460ff1690565b3390565b8280546200027590620005de565b90600052602060002090601f016020900481019282620002995760008555620002e4565b82601f10620002b457805160ff1916838001178555620002e4565b82800160010185558215620002e4579182015b82811115620002e4578251825591602001919060010190620002c7565b50620002f2929150620002f6565b5090565b5b80821115620002f25760008155600101620002f7565b600082601f8301126200031e578081fd5b81516001600160401b03808211156200033b576200033b62000631565b6040516020601f8401601f191682018101838111838210171562000363576200036362000631565b60405283825285840181018710156200037a578485fd5b8492505b838310156200039d57858301810151828401820152918201916200037e565b83831115620003ae57848185840101525b5095945050505050565b60008060408385031215620003cb578182fd5b82516001600160401b0380821115620003e2578384fd5b620003f0868387016200030d565b9350602085015191508082111562000406578283fd5b5062000415858286016200030d565b9150509250929050565b6020808252601f908201527f45524332303a206d696e7420746f20746865207a65726f206164647265737300604082015260600190565b90815260200190565b600082198211156200047557620004756200061b565b500190565b80825b60018086116200048e5750620004be565b818704821115620004a357620004a36200061b565b80861615620004b157918102915b9490941c9380026200047d565b94509492505050565b6000620004d86000198484620004df565b9392505050565b600082620004f057506001620004d8565b81620004ff57506000620004d8565b8160018114620005185760028114620005235762000557565b6001915050620004d8565b60ff8411156200053757620005376200061b565b6001841b9150848211156200055057620005506200061b565b50620004d8565b5060208310610133831016604e8410600b84101617156200058f575081810a838111156200058957620005896200061b565b620004d8565b6200059e84848460016200047a565b808604821115620005b357620005b36200061b565b02949350505050565b6000816000190483118215151615620005d957620005d96200061b565b500290565b600281046001821680620005f357607f821691505b602082108114156200061557634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052604160045260246000fd5b6114dd80620006576000396000f3fe608060405234801561001057600080fd5b50600436106101585760003560e01c80635ce289ba116100c3578063a457c2d71161007c578063a457c2d7146102b0578063a74f7e11146102c3578063a9059cbb146102cb578063d5391393146102de578063d547741f146102e6578063dd62ed3e146102f957610158565b80635ce289ba1461025457806370a08231146102675780638f4beab21461027a57806391d148541461028d57806395d89b41146102a0578063a217fddf146102a857610158565b8063248a9ca311610115578063248a9ca3146101eb5780632f2ff15d146101fe578063313ce5671461021157806332424aa31461022657806336568abe1461022e578063395093511461024157610158565b806301ffc9a71461015d57806306fdde0314610186578063095ea7b31461019b5780630dadb096146101ae57806318160ddd146101c357806323b872dd146101d8575b600080fd5b61017061016b366004610f87565b61030c565b60405161017d9190611024565b60405180910390f35b61018e610339565b60405161017d9190611038565b6101706101a9366004610f04565b6103cb565b6101c16101bc366004610f65565b6103e8565b005b6101cb610445565b60405161017d919061102f565b6101706101e6366004610ec9565b61044b565b6101cb6101f9366004610f4d565b6104db565b6101c161020c366004610f65565b6104f0565b610219610519565b60405161017d91906113b7565b61021961051e565b6101c161023c366004610f65565b610523565b61017061024f366004610f04565b610565565b6101c1610262366004610f2d565b6105b9565b6101cb610275366004610e7d565b6105f3565b6101c1610288366004610f4d565b61060e565b61017061029b366004610f65565b61064c565b61018e610675565b6101cb610684565b6101706102be366004610f04565b610689565b610170610702565b6101706102d9366004610f04565b61070b565b6101cb61071f565b6101c16102f4366004610f65565b610743565b6101cb610307366004610e97565b610762565b60006001600160e01b03198216637965db0b60e01b148061033157506103318261078d565b90505b919050565b60606004805461034890611456565b80601f016020809104026020016040519081016040528092919081815260200182805461037490611456565b80156103c15780601f10610396576101008083540402835291602001916103c1565b820191906000526020600020905b8154815290600101906020018083116103a457829003601f168201915b5050505050905090565b60006103df6103d86107a6565b84846107aa565b50600192915050565b6104127f9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a63361064c565b6104375760405162461bcd60e51b815260040161042e90611236565b60405180910390fd5b610441818361085e565b5050565b60035490565b6000610458848484610926565b6001600160a01b0384166000908152600260205260408120816104796107a6565b6001600160a01b03166001600160a01b03168152602001908152602001600020549050828110156104bc5760405162461bcd60e51b815260040161042e906111ad565b6104d0856104c86107a6565b8584036107aa565b506001949350505050565b60009081526020819052604090206001015490565b6104f9826104db565b61050a816105056107a6565b610a50565b6105148383610ab4565b505050565b601290565b601281565b61052b6107a6565b6001600160a01b0316816001600160a01b03161461055b5760405162461bcd60e51b815260040161042e90611331565b6104418282610b39565b60006103df6105726107a6565b8484600260006105806107a6565b6001600160a01b03908116825260208083019390935260409182016000908120918b16815292529020546105b491906113c5565b6107aa565b6105c460003361064c565b6105e05760405162461bcd60e51b815260040161042e90611236565b6006805460ff1916911515919091179055565b6001600160a01b031660009081526001602052604090205490565b60065460ff1661063f5761062360003361064c565b61063f5760405162461bcd60e51b815260040161042e90611236565b6106493382610bbc565b50565b6000918252602082815260408084206001600160a01b0393909316845291905290205460ff1690565b60606005805461034890611456565b600081565b600080600260006106986107a6565b6001600160a01b03908116825260208083019390935260409182016000908120918816815292529020549050828110156106e45760405162461bcd60e51b815260040161042e906112ec565b6106f86106ef6107a6565b858584036107aa565b5060019392505050565b60065460ff1681565b60006103df6107186107a6565b8484610926565b7f9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a681565b61074c826104db565b610758816105056107a6565b6105148383610b39565b6001600160a01b03918216600090815260026020908152604080832093909416825291909152205490565b6001600160e01b031981166301ffc9a760e01b14919050565b3390565b6001600160a01b0383166107d05760405162461bcd60e51b815260040161042e906112a8565b6001600160a01b0382166107f65760405162461bcd60e51b815260040161042e90611125565b6001600160a01b0380841660008181526002602090815260408083209487168084529490915290819020849055517f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b9259061085190859061102f565b60405180910390a3505050565b6001600160a01b0382166108845760405162461bcd60e51b815260040161042e90611380565b61089060008383610514565b80600360008282546108a291906113c5565b90915550506001600160a01b038216600090815260016020526040812080548392906108cf9084906113c5565b90915550506040516001600160a01b038316906000907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9061091290859061102f565b60405180910390a361044160008383610514565b6001600160a01b03831661094c5760405162461bcd60e51b815260040161042e90611263565b6001600160a01b0382166109725760405162461bcd60e51b815260040161042e906110a0565b61097d838383610514565b6001600160a01b038316600090815260016020526040902054818110156109b65760405162461bcd60e51b815260040161042e90611167565b6001600160a01b038085166000908152600160205260408082208585039055918516815290812080548492906109ed9084906113c5565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef84604051610a37919061102f565b60405180910390a3610a4a848484610514565b50505050565b610a5a828261064c565b61044157610a72816001600160a01b03166014610cad565b610a7d836020610cad565b604051602001610a8e929190610faf565b60408051601f198184030181529082905262461bcd60e51b825261042e91600401611038565b610abe828261064c565b610441576000828152602081815260408083206001600160a01b03851684529091529020805460ff19166001179055610af56107a6565b6001600160a01b0316816001600160a01b0316837f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d60405160405180910390a45050565b610b43828261064c565b15610441576000828152602081815260408083206001600160a01b03851684529091529020805460ff19169055610b786107a6565b6001600160a01b0316816001600160a01b0316837ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b60405160405180910390a45050565b6001600160a01b038216610be25760405162461bcd60e51b815260040161042e906111f5565b610bee82600083610514565b6001600160a01b03821660009081526001602052604090205481811015610c275760405162461bcd60e51b815260040161042e906110e3565b6001600160a01b0383166000908152600160205260408120838303905560038054849290610c569084906113fc565b90915550506040516000906001600160a01b038516907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef90610c9990869061102f565b60405180910390a361051483600084610514565b60606000610cbc8360026113dd565b610cc79060026113c5565b67ffffffffffffffff811115610ced57634e487b7160e01b600052604160045260246000fd5b6040519080825280601f01601f191660200182016040528015610d17576020820181803683370190505b509050600360fc1b81600081518110610d4057634e487b7160e01b600052603260045260246000fd5b60200101906001600160f81b031916908160001a905350600f60fb1b81600181518110610d7d57634e487b7160e01b600052603260045260246000fd5b60200101906001600160f81b031916908160001a9053506000610da18460026113dd565b610dac9060016113c5565b90505b6001811115610e40576f181899199a1a9b1b9c1cb0b131b232b360811b85600f1660108110610dee57634e487b7160e01b600052603260045260246000fd5b1a60f81b828281518110610e1257634e487b7160e01b600052603260045260246000fd5b60200101906001600160f81b031916908160001a90535060049490941c93610e398161143f565b9050610daf565b508315610e5f5760405162461bcd60e51b815260040161042e9061106b565b9392505050565b80356001600160a01b038116811461033457600080fd5b600060208284031215610e8e578081fd5b610e5f82610e66565b60008060408385031215610ea9578081fd5b610eb283610e66565b9150610ec060208401610e66565b90509250929050565b600080600060608486031215610edd578081fd5b610ee684610e66565b9250610ef460208501610e66565b9150604084013590509250925092565b60008060408385031215610f16578182fd5b610f1f83610e66565b946020939093013593505050565b600060208284031215610f3e578081fd5b81358015158114610e5f578182fd5b600060208284031215610f5e578081fd5b5035919050565b60008060408385031215610f77578182fd5b82359150610ec060208401610e66565b600060208284031215610f98578081fd5b81356001600160e01b031981168114610e5f578182fd5b60007f416363657373436f6e74726f6c3a206163636f756e742000000000000000000082528351610fe7816017850160208801611413565b7001034b99036b4b9b9b4b733903937b6329607d1b6017918401918201528351611018816028840160208801611413565b01602801949350505050565b901515815260200190565b90815260200190565b6000602082528251806020840152611057816040850160208701611413565b601f01601f19169190910160400192915050565b6020808252818101527f537472696e67733a20686578206c656e67746820696e73756666696369656e74604082015260600190565b60208082526023908201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260408201526265737360e81b606082015260800190565b60208082526022908201527f45524332303a206275726e20616d6f756e7420657863656564732062616c616e604082015261636560f01b606082015260800190565b60208082526022908201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604082015261737360f01b606082015260800190565b60208082526026908201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604082015265616c616e636560d01b606082015260800190565b60208082526028908201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616040820152676c6c6f77616e636560c01b606082015260800190565b60208082526021908201527f45524332303a206275726e2066726f6d20746865207a65726f206164647265736040820152607360f81b606082015260800190565b602080825260139082015272556e617574686f72697a65642061636365737360681b604082015260600190565b60208082526025908201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604082015264647265737360d81b606082015260800190565b60208082526024908201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646040820152637265737360e01b606082015260800190565b60208082526025908201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604082015264207a65726f60d81b606082015260800190565b6020808252602f908201527f416363657373436f6e74726f6c3a2063616e206f6e6c792072656e6f756e636560408201526e103937b632b9903337b91039b2b63360891b606082015260800190565b6020808252601f908201527f45524332303a206d696e7420746f20746865207a65726f206164647265737300604082015260600190565b60ff91909116815260200190565b600082198211156113d8576113d8611491565b500190565b60008160001904831182151516156113f7576113f7611491565b500290565b60008282101561140e5761140e611491565b500390565b60005b8381101561142e578181015183820152602001611416565b83811115610a4a5750506000910152565b60008161144e5761144e611491565b506000190190565b60028104600182168061146a57607f821691505b6020821081141561148b57634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052601160045260246000fdfea2646970667358221220a379e2350ce4ee2e19d07b5e90bbca9757bae41080c340c98bd018b07c2123b164736f6c63430008000033";
+        public KryxitShardDeploymentBase() : base(BYTECODE) { }
+        public KryxitShardDeploymentBase(string byteCode) : base(byteCode) { }
+        [Parameter("string", "name", 1)]
+        public virtual string Name { get; set; }
+        [Parameter("string", "symbol", 2)]
+        public virtual string Symbol { get; set; }
+    }
+
+    public partial class DefaultAdminRoleFunction : DefaultAdminRoleFunctionBase { }
+
+    [Function("DEFAULT_ADMIN_ROLE", "bytes32")]
+    public class DefaultAdminRoleFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class MinterRoleFunction : MinterRoleFunctionBase { }
+
+    [Function("MINTER_ROLE", "bytes32")]
+    public class MinterRoleFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class BurnEnabledFunction : BurnEnabledFunctionBase { }
+
+    [Function("_burnEnabled", "bool")]
+    public class BurnEnabledFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class DecimalsFunction : DecimalsFunctionBase { }
+
+    [Function("_decimals", "uint8")]
+    public class DecimalsFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class AllowanceFunction : AllowanceFunctionBase { }
+
+    [Function("allowance", "uint256")]
+    public class AllowanceFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "owner", 1)]
+        public virtual string Owner { get; set; }
+        [Parameter("address", "spender", 2)]
+        public virtual string Spender { get; set; }
+    }
+
+    public partial class ApproveFunction : ApproveFunctionBase { }
+
+    [Function("approve", "bool")]
+    public class ApproveFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "spender", 1)]
+        public virtual string Spender { get; set; }
+        [Parameter("uint256", "amount", 2)]
+        public virtual BigInteger Amount { get; set; }
+    }
+
+    public partial class BalanceOfFunction : BalanceOfFunctionBase { }
+
+    [Function("balanceOf", "uint256")]
+    public class BalanceOfFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "account", 1)]
+        public virtual string Account { get; set; }
+    }
+
+    public partial class BurnKXSFunction : BurnKXSFunctionBase { }
+
+    [Function("burnKXS")]
+    public class BurnKXSFunctionBase : FunctionMessage
+    {
+        [Parameter("uint256", "amount", 1)]
+        public virtual BigInteger Amount { get; set; }
+    }
+
+    public partial class DecreaseAllowanceFunction : DecreaseAllowanceFunctionBase { }
+
+    [Function("decreaseAllowance", "bool")]
+    public class DecreaseAllowanceFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "spender", 1)]
+        public virtual string Spender { get; set; }
+        [Parameter("uint256", "subtractedValue", 2)]
+        public virtual BigInteger SubtractedValue { get; set; }
+    }
+
+    public partial class GetRoleAdminFunction : GetRoleAdminFunctionBase { }
+
+    [Function("getRoleAdmin", "bytes32")]
+    public class GetRoleAdminFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes32", "role", 1)]
+        public virtual byte[] Role { get; set; }
+    }
+
+    public partial class GrantRoleFunction : GrantRoleFunctionBase { }
+
+    [Function("grantRole")]
+    public class GrantRoleFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes32", "role", 1)]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2)]
+        public virtual string Account { get; set; }
+    }
+
+    public partial class HasRoleFunction : HasRoleFunctionBase { }
+
+    [Function("hasRole", "bool")]
+    public class HasRoleFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes32", "role", 1)]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2)]
+        public virtual string Account { get; set; }
+    }
+
+    public partial class IncreaseAllowanceFunction : IncreaseAllowanceFunctionBase { }
+
+    [Function("increaseAllowance", "bool")]
+    public class IncreaseAllowanceFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "spender", 1)]
+        public virtual string Spender { get; set; }
+        [Parameter("uint256", "addedValue", 2)]
+        public virtual BigInteger AddedValue { get; set; }
+    }
+
+    public partial class MintKXSFunction : MintKXSFunctionBase { }
+
+    [Function("mintKXS")]
+    public class MintKXSFunctionBase : FunctionMessage
+    {
+        [Parameter("uint256", "amount", 1)]
+        public virtual BigInteger Amount { get; set; }
+        [Parameter("address", "receiver", 2)]
+        public virtual string Receiver { get; set; }
+    }
+
+    public partial class NameFunction : NameFunctionBase { }
+
+    [Function("name", "string")]
+    public class NameFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class RenounceRoleFunction : RenounceRoleFunctionBase { }
+
+    [Function("renounceRole")]
+    public class RenounceRoleFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes32", "role", 1)]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2)]
+        public virtual string Account { get; set; }
+    }
+
+    public partial class RevokeRoleFunction : RevokeRoleFunctionBase { }
+
+    [Function("revokeRole")]
+    public class RevokeRoleFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes32", "role", 1)]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2)]
+        public virtual string Account { get; set; }
+    }
+
+    public partial class SetBurnStateFunction : SetBurnStateFunctionBase { }
+
+    [Function("setBurnState")]
+    public class SetBurnStateFunctionBase : FunctionMessage
+    {
+        [Parameter("bool", "state", 1)]
+        public virtual bool State { get; set; }
+    }
+
+    public partial class SupportsInterfaceFunction : SupportsInterfaceFunctionBase { }
+
+    [Function("supportsInterface", "bool")]
+    public class SupportsInterfaceFunctionBase : FunctionMessage
+    {
+        [Parameter("bytes4", "interfaceId", 1)]
+        public virtual byte[] InterfaceId { get; set; }
+    }
+
+    public partial class SymbolFunction : SymbolFunctionBase { }
+
+    [Function("symbol", "string")]
+    public class SymbolFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class TotalSupplyFunction : TotalSupplyFunctionBase { }
+
+    [Function("totalSupply", "uint256")]
+    public class TotalSupplyFunctionBase : FunctionMessage
+    {
+
+    }
+
+    public partial class TransferFunction : TransferFunctionBase { }
+
+    [Function("transfer", "bool")]
+    public class TransferFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "recipient", 1)]
+        public virtual string Recipient { get; set; }
+        [Parameter("uint256", "amount", 2)]
+        public virtual BigInteger Amount { get; set; }
+    }
+
+    public partial class TransferFromFunction : TransferFromFunctionBase { }
+
+    [Function("transferFrom", "bool")]
+    public class TransferFromFunctionBase : FunctionMessage
+    {
+        [Parameter("address", "sender", 1)]
+        public virtual string Sender { get; set; }
+        [Parameter("address", "recipient", 2)]
+        public virtual string Recipient { get; set; }
+        [Parameter("uint256", "amount", 3)]
+        public virtual BigInteger Amount { get; set; }
+    }
+
+    public partial class ApprovalEventDTO : ApprovalEventDTOBase { }
+
+    [Event("Approval")]
+    public class ApprovalEventDTOBase : IEventDTO
+    {
+        [Parameter("address", "owner", 1, true )]
+        public virtual string Owner { get; set; }
+        [Parameter("address", "spender", 2, true )]
+        public virtual string Spender { get; set; }
+        [Parameter("uint256", "value", 3, false )]
+        public virtual BigInteger Value { get; set; }
+    }
+
+    public partial class RoleAdminChangedEventDTO : RoleAdminChangedEventDTOBase { }
+
+    [Event("RoleAdminChanged")]
+    public class RoleAdminChangedEventDTOBase : IEventDTO
+    {
+        [Parameter("bytes32", "role", 1, true )]
+        public virtual byte[] Role { get; set; }
+        [Parameter("bytes32", "previousAdminRole", 2, true )]
+        public virtual byte[] PreviousAdminRole { get; set; }
+        [Parameter("bytes32", "newAdminRole", 3, true )]
+        public virtual byte[] NewAdminRole { get; set; }
+    }
+
+    public partial class RoleGrantedEventDTO : RoleGrantedEventDTOBase { }
+
+    [Event("RoleGranted")]
+    public class RoleGrantedEventDTOBase : IEventDTO
+    {
+        [Parameter("bytes32", "role", 1, true )]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2, true )]
+        public virtual string Account { get; set; }
+        [Parameter("address", "sender", 3, true )]
+        public virtual string Sender { get; set; }
+    }
+
+    public partial class RoleRevokedEventDTO : RoleRevokedEventDTOBase { }
+
+    [Event("RoleRevoked")]
+    public class RoleRevokedEventDTOBase : IEventDTO
+    {
+        [Parameter("bytes32", "role", 1, true )]
+        public virtual byte[] Role { get; set; }
+        [Parameter("address", "account", 2, true )]
+        public virtual string Account { get; set; }
+        [Parameter("address", "sender", 3, true )]
+        public virtual string Sender { get; set; }
+    }
+
+    public partial class TransferEventDTO : TransferEventDTOBase { }
+
+    [Event("Transfer")]
+    public class TransferEventDTOBase : IEventDTO
+    {
+        [Parameter("address", "from", 1, true )]
+        public virtual string From { get; set; }
+        [Parameter("address", "to", 2, true )]
+        public virtual string To { get; set; }
+        [Parameter("uint256", "value", 3, false )]
+        public virtual BigInteger Value { get; set; }
+    }
+
+    public partial class DefaultAdminRoleOutputDTO : DefaultAdminRoleOutputDTOBase { }
+
+    [FunctionOutput]
+    public class DefaultAdminRoleOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bytes32", "", 1)]
+        public virtual byte[] ReturnValue1 { get; set; }
+    }
+
+    public partial class MinterRoleOutputDTO : MinterRoleOutputDTOBase { }
+
+    [FunctionOutput]
+    public class MinterRoleOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bytes32", "", 1)]
+        public virtual byte[] ReturnValue1 { get; set; }
+    }
+
+    public partial class BurnEnabledOutputDTO : BurnEnabledOutputDTOBase { }
+
+    [FunctionOutput]
+    public class BurnEnabledOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bool", "", 1)]
+        public virtual bool ReturnValue1 { get; set; }
+    }
+
+    public partial class DecimalsOutputDTO : DecimalsOutputDTOBase { }
+
+    [FunctionOutput]
+    public class DecimalsOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint8", "", 1)]
+        public virtual byte ReturnValue1 { get; set; }
+    }
+
+    public partial class AllowanceOutputDTO : AllowanceOutputDTOBase { }
+
+    [FunctionOutput]
+    public class AllowanceOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint256", "", 1)]
+        public virtual BigInteger ReturnValue1 { get; set; }
+    }
+
+
+
+    public partial class BalanceOfOutputDTO : BalanceOfOutputDTOBase { }
+
+    [FunctionOutput]
+    public class BalanceOfOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint256", "", 1)]
+        public virtual BigInteger ReturnValue1 { get; set; }
+    }
+
+    public partial class GetRoleAdminOutputDTO : GetRoleAdminOutputDTOBase { }
+
+    [FunctionOutput]
+    public class GetRoleAdminOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bytes32", "", 1)]
+        public virtual byte[] ReturnValue1 { get; set; }
+    }
+
+
+
+    public partial class HasRoleOutputDTO : HasRoleOutputDTOBase { }
+
+    [FunctionOutput]
+    public class HasRoleOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bool", "", 1)]
+        public virtual bool ReturnValue1 { get; set; }
+    }
+
+
+
+
+
+    public partial class NameOutputDTO : NameOutputDTOBase { }
+
+    [FunctionOutput]
+    public class NameOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("string", "", 1)]
+        public virtual string ReturnValue1 { get; set; }
+    }
+
+
+
+
+
+
+
+    public partial class SupportsInterfaceOutputDTO : SupportsInterfaceOutputDTOBase { }
+
+    [FunctionOutput]
+    public class SupportsInterfaceOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("bool", "", 1)]
+        public virtual bool ReturnValue1 { get; set; }
+    }
+
+    public partial class SymbolOutputDTO : SymbolOutputDTOBase { }
+
+    [FunctionOutput]
+    public class SymbolOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("string", "", 1)]
+        public virtual string ReturnValue1 { get; set; }
+    }
+
+    public partial class TotalSupplyOutputDTO : TotalSupplyOutputDTOBase { }
+
+    [FunctionOutput]
+    public class TotalSupplyOutputDTOBase : IFunctionOutputDTO 
+    {
+        [Parameter("uint256", "", 1)]
+        public virtual BigInteger ReturnValue1 { get; set; }
+    }
+
+
+
+
+}

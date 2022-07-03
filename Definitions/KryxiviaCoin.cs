@@ -10,7 +10,7 @@ using Nethereum.Contracts.CQS;
 using Nethereum.Contracts;
 using System.Threading;
 
-namespace Kryxivia.Contracts.Definitions.KryxiviaShardCoin
+namespace Kryxivia.Contracts.Definitions.KryxiviaCoin
 {
     public partial class KryxiviaCoinDeployment : KryxiviaCoinDeploymentBase
     {
