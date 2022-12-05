@@ -258,11 +258,11 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     [Event("Approval")]
     public class ApprovalEventDTOBase : IEventDTO
     {
-        [Parameter("address", "owner", 1, true )]
+        [Parameter("address", "owner", 1, true)]
         public virtual string Owner { get; set; }
-        [Parameter("address", "spender", 2, true )]
+        [Parameter("address", "spender", 2, true)]
         public virtual string Spender { get; set; }
-        [Parameter("uint256", "value", 3, false )]
+        [Parameter("uint256", "value", 3, false)]
         public virtual BigInteger Value { get; set; }
     }
 
@@ -271,11 +271,11 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     [Event("RoleAdminChanged")]
     public class RoleAdminChangedEventDTOBase : IEventDTO
     {
-        [Parameter("bytes32", "role", 1, true )]
+        [Parameter("bytes32", "role", 1, true)]
         public virtual byte[] Role { get; set; }
-        [Parameter("bytes32", "previousAdminRole", 2, true )]
+        [Parameter("bytes32", "previousAdminRole", 2, true)]
         public virtual byte[] PreviousAdminRole { get; set; }
-        [Parameter("bytes32", "newAdminRole", 3, true )]
+        [Parameter("bytes32", "newAdminRole", 3, true)]
         public virtual byte[] NewAdminRole { get; set; }
     }
 
@@ -284,11 +284,11 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     [Event("RoleGranted")]
     public class RoleGrantedEventDTOBase : IEventDTO
     {
-        [Parameter("bytes32", "role", 1, true )]
+        [Parameter("bytes32", "role", 1, true)]
         public virtual byte[] Role { get; set; }
-        [Parameter("address", "account", 2, true )]
+        [Parameter("address", "account", 2, true)]
         public virtual string Account { get; set; }
-        [Parameter("address", "sender", 3, true )]
+        [Parameter("address", "sender", 3, true)]
         public virtual string Sender { get; set; }
     }
 
@@ -297,11 +297,11 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     [Event("RoleRevoked")]
     public class RoleRevokedEventDTOBase : IEventDTO
     {
-        [Parameter("bytes32", "role", 1, true )]
+        [Parameter("bytes32", "role", 1, true)]
         public virtual byte[] Role { get; set; }
-        [Parameter("address", "account", 2, true )]
+        [Parameter("address", "account", 2, true)]
         public virtual string Account { get; set; }
-        [Parameter("address", "sender", 3, true )]
+        [Parameter("address", "sender", 3, true)]
         public virtual string Sender { get; set; }
     }
 
@@ -310,18 +310,18 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     [Event("Transfer")]
     public class TransferEventDTOBase : IEventDTO
     {
-        [Parameter("address", "from", 1, true )]
+        [Parameter("address", "from", 1, true)]
         public virtual string From { get; set; }
-        [Parameter("address", "to", 2, true )]
+        [Parameter("address", "to", 2, true)]
         public virtual string To { get; set; }
-        [Parameter("uint256", "value", 3, false )]
+        [Parameter("uint256", "value", 3, false)]
         public virtual BigInteger Value { get; set; }
     }
 
     public partial class DefaultAdminRoleOutputDTO : DefaultAdminRoleOutputDTOBase { }
 
     [FunctionOutput]
-    public class DefaultAdminRoleOutputDTOBase : IFunctionOutputDTO 
+    public class DefaultAdminRoleOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bytes32", "", 1)]
         public virtual byte[] ReturnValue1 { get; set; }
@@ -330,7 +330,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class MinterRoleOutputDTO : MinterRoleOutputDTOBase { }
 
     [FunctionOutput]
-    public class MinterRoleOutputDTOBase : IFunctionOutputDTO 
+    public class MinterRoleOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bytes32", "", 1)]
         public virtual byte[] ReturnValue1 { get; set; }
@@ -339,7 +339,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class BurnEnabledOutputDTO : BurnEnabledOutputDTOBase { }
 
     [FunctionOutput]
-    public class BurnEnabledOutputDTOBase : IFunctionOutputDTO 
+    public class BurnEnabledOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bool", "", 1)]
         public virtual bool ReturnValue1 { get; set; }
@@ -348,7 +348,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class DecimalsOutputDTO : DecimalsOutputDTOBase { }
 
     [FunctionOutput]
-    public class DecimalsOutputDTOBase : IFunctionOutputDTO 
+    public class DecimalsOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("uint8", "", 1)]
         public virtual byte ReturnValue1 { get; set; }
@@ -357,7 +357,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class AllowanceOutputDTO : AllowanceOutputDTOBase { }
 
     [FunctionOutput]
-    public class AllowanceOutputDTOBase : IFunctionOutputDTO 
+    public class AllowanceOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("uint256", "", 1)]
         public virtual BigInteger ReturnValue1 { get; set; }
@@ -368,7 +368,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class BalanceOfOutputDTO : BalanceOfOutputDTOBase { }
 
     [FunctionOutput]
-    public class BalanceOfOutputDTOBase : IFunctionOutputDTO 
+    public class BalanceOfOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("uint256", "", 1)]
         public virtual BigInteger ReturnValue1 { get; set; }
@@ -377,7 +377,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class GetRoleAdminOutputDTO : GetRoleAdminOutputDTOBase { }
 
     [FunctionOutput]
-    public class GetRoleAdminOutputDTOBase : IFunctionOutputDTO 
+    public class GetRoleAdminOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bytes32", "", 1)]
         public virtual byte[] ReturnValue1 { get; set; }
@@ -388,7 +388,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class HasRoleOutputDTO : HasRoleOutputDTOBase { }
 
     [FunctionOutput]
-    public class HasRoleOutputDTOBase : IFunctionOutputDTO 
+    public class HasRoleOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bool", "", 1)]
         public virtual bool ReturnValue1 { get; set; }
@@ -401,7 +401,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class NameOutputDTO : NameOutputDTOBase { }
 
     [FunctionOutput]
-    public class NameOutputDTOBase : IFunctionOutputDTO 
+    public class NameOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("string", "", 1)]
         public virtual string ReturnValue1 { get; set; }
@@ -416,7 +416,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class SupportsInterfaceOutputDTO : SupportsInterfaceOutputDTOBase { }
 
     [FunctionOutput]
-    public class SupportsInterfaceOutputDTOBase : IFunctionOutputDTO 
+    public class SupportsInterfaceOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("bool", "", 1)]
         public virtual bool ReturnValue1 { get; set; }
@@ -425,7 +425,7 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class SymbolOutputDTO : SymbolOutputDTOBase { }
 
     [FunctionOutput]
-    public class SymbolOutputDTOBase : IFunctionOutputDTO 
+    public class SymbolOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("string", "", 1)]
         public virtual string ReturnValue1 { get; set; }
@@ -434,13 +434,9 @@ namespace Kryxivia.Contracts.Definitions.KryxitShard
     public partial class TotalSupplyOutputDTO : TotalSupplyOutputDTOBase { }
 
     [FunctionOutput]
-    public class TotalSupplyOutputDTOBase : IFunctionOutputDTO 
+    public class TotalSupplyOutputDTOBase : IFunctionOutputDTO
     {
         [Parameter("uint256", "", 1)]
         public virtual BigInteger ReturnValue1 { get; set; }
     }
-
-
-
-
 }
