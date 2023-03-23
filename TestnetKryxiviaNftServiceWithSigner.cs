@@ -22,6 +22,6 @@ namespace Kryxivia.Contracts
     /// </summary>
     public class TestnetKryxiviaNftServiceWithSigner : _KryxiviaNftServiceBase
     {
-        public TestnetKryxiviaNftServiceWithSigner(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.TestnetWeb3WithSigner, kryxContractsOptions?.Value.TestnetNftContractAddress) { }
+        public TestnetKryxiviaNftServiceWithSigner(Web3 account, string address) : base(account, address) { }
     }
 }

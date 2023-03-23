@@ -22,6 +22,6 @@ namespace Kryxivia.Contracts
     /// </summary>
     public class MainnetKryxitShardServiceWithSigner : _KryxitShardServiceBase
     {
-        public MainnetKryxitShardServiceWithSigner(IOptions<KryxContractsOptions> kryxContractsOptions) : base(kryxContractsOptions?.Value.MainnetWeb3WithSigner, kryxContractsOptions?.Value.MainnetKryxitShardContractAddress) { }
+        public MainnetKryxitShardServiceWithSigner(Web3 account, string address) : base(account, address) { }
     }
 }
